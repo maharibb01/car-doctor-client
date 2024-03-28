@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const ServiceCard = ({service}) => {
+const ServiceCard = ({ service }) => {
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -10,7 +11,9 @@ const ServiceCard = ({service}) => {
                 <h2 className="card-title">{service.title}</h2>
                 <p>Peice: ${service.price}</p>
                 <div className="card-actions">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <Link to={`/book/${service._id}`}>
+                        <button className="btn btn-primary">Book Now</button>
+                    </Link>
                 </div>
             </div>
         </div>

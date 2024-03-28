@@ -1,13 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../../src/assets/logo.svg"
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 const Navbar = () => {
+
+    const { user, logout } = useContext(AuthContext);
 
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/services">Services</NavLink></li>
-        <li><NavLink to="/blog">Blog</NavLink></li>
-        <li><NavLink to="/contact">Contact</NavLink></li>
+        {
+            user ?
+                <>
+                    <li className="mr-10"><NavLink to="/bookings">My Bookings</NavLink></li>
+                    <li><button onClick={logout} className="py-1 px-4 bg-red-600 text-white mt-1">Logout</button></li>
+                </>
+                : <li><NavLink to="/login">Login</NavLink></li>
+        }
     </>
 
     return (
